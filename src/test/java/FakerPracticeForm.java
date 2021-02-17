@@ -3,6 +3,7 @@ import com.github.javafaker.Faker;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.time.Month;
 import java.util.Random;
 
@@ -15,7 +16,7 @@ public class FakerPracticeForm {
     Faker faker = new Faker();
     Random random = new Random();
     int
-            dayOfBirth = random.nextInt(30 + 1),
+            dayOfBirth = random.nextInt(27 + 1),
             monthOfBirth = random.nextInt(11),
             yearOfBirth = random.nextInt(120 + 1);
 
@@ -24,8 +25,10 @@ public class FakerPracticeForm {
             welcometext = "Student Registration Form";
     String
             gender = "Female",
-            subject1 = "En",
-            subject2 = "Co";
+            subject1 = "Eng",
+            subject2 = "Co",
+            hobby1 = "Sports",
+            hobby2 = "Music";
 
     @Test
     void SelenideFaker() {
@@ -40,10 +43,17 @@ public class FakerPracticeForm {
         $(".react-datepicker__month-select").selectOption(monthOfBirth);
         $(".react-datepicker__year-select").selectOption(yearOfBirth);
         $(".react-datepicker__day--0" + dayOfBirth).click();
-        sleep(3000);
-        $("#subjectInput").val(subject1);
-        $(".subjects-auto-complete__menu-list").$(byText(subject1)).click();
-
+        $("#subjectsContainer").click();
+        $("#subjectsInput").val(subject1);
+        $(".subjects-auto-complete__menu-list").$(byText("English")).click();
+        $("#subjectsInput").val(subject2);
+        $(".subjects-auto-complete__menu-list").$(byText("Computer Science")).click();
+        sleep(1000);
+        $("#hobbiesWrapper").$(byText(hobby1)).click();
+        $("#hobbiesWrapper").$(byText(hobby2)).click();
+        $("#currentAddress").val(faker.address().fullAddress());
+        sleep(1000);
+        //доделать
 }
 
 }
