@@ -28,7 +28,10 @@ public class FakerPracticeForm {
             subject1 = "Eng",
             subject2 = "Co",
             hobby1 = "Sports",
-            hobby2 = "Music";
+            hobby2 = "Music",
+            picture = "IMG_4410.jpg",
+            state = "Haryana",
+            city = "Panipat";
 
     @Test
     void SelenideFaker() {
@@ -37,7 +40,7 @@ public class FakerPracticeForm {
         $("#firstName").setValue(faker.name().firstName());
         $("#lastName").setValue(faker.name().lastName());
         $("#userEmail").setValue(faker.internet().emailAddress());
-        $(byText(gender)).click();
+        $("#genterWrapper").$(byText(gender)).click();
         $("#userNumber").setValue(faker.phoneNumber().phoneNumber());
         $("#dateOfBirthInput").clear();
         $(".react-datepicker__month-select").selectOption(monthOfBirth);
@@ -48,12 +51,14 @@ public class FakerPracticeForm {
         $(".subjects-auto-complete__menu-list").$(byText("English")).click();
         $("#subjectsInput").val(subject2);
         $(".subjects-auto-complete__menu-list").$(byText("Computer Science")).click();
-        sleep(1000);
         $("#hobbiesWrapper").$(byText(hobby1)).click();
         $("#hobbiesWrapper").$(byText(hobby2)).click();
         $("#currentAddress").val(faker.address().fullAddress());
-        sleep(1000);
-        //доделать
+        $("#state").click();
+        $("#stateCity-wrapper").$(byText(state)).click();
+        $("#city").click();
+        $("#stateCity-wrapper").$(byText(city)).click();
+        $("#uploadPicture").uploadFromClasspath("img/" + picture);
+        $("#submit").click();
 }
-
 }
